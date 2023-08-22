@@ -1,0 +1,26 @@
+f = @(t,v) -9.8-0.002/0.11*v.*abs(v);
+n = 1:100;
+h = 0.5.^n;
+err = inf(1,lenth(n));
+FIRSTTIME = true;
+for i = n
+    [t, y] = eulerstep(f,0,20,n,80);
+    if FIRSTTIME == true
+        last_t = t;
+        last_y = y;
+        FIRSTTIME = false;
+        continue
+    else
+        err(i) = max(abs(y(1:2:end)- last_y));
+        if(err(i)<1e-4)
+            t =last_t;
+            y=last_y;
+            break
+        end
+        last_y=y;
+    end
+end
+plot(t,y,'b',"LineWidth",1);
+xlabel("t(s)");ylabel("v(m/s)")
+title("v(t)")
+save("Q2_a",'t','y')

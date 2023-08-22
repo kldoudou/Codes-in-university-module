@@ -1,0 +1,12 @@
+%% plot v(t)
+plot(t,y,'b',"LineWidth",1);
+xlabel("t(s)");ylabel("v(m/s)")
+title("v(t)")
+save("Q2_a",'t','y')
+%% plot error
+plot(err)
+ax = gca;
+ax.YScale = 'log';
+xlabel("n");
+ylabel("error")
+title("error be")

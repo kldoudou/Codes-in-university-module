@@ -1,2 +1,2 @@
 # Codes-in-university-module
-XJTLU applied mathematics modules codes
+XJTLU applied mathematics codes

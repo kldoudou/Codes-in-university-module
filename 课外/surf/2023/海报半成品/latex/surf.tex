@@ -1,0 +1,38 @@
+\def\SetClass{article}%pdftocairo -svg surf.pdf 
+\documentclass{\SetClass}
+\usepackage{algorithm}  
+\usepackage{algorithmicx}  
+\usepackage{algpseudocode}  
+\usepackage{amsmath}  
+\renewcommand{\algorithmicrequire}{\textbf{Input}}  
+\renewcommand{\algorithmicensure}{\textbf{Output}}  
+\begin{document}
+\begin{algorithm}[h]
+    \caption{Raw adaptive simpson algorithm}
+    \begin{algorithmic}[1] %每行显示行号  
+    \Require
+    endpoints a,b; tolerance TOL; limit N to number of levels.
+    \Ensure
+    approximation APP which is the integrate result.
+  \Function{ADAPSIMPSON}{f,a,b,tol}
+  \State $c = (a+b)/2$
+  \State $c1 = (a+c)/2$
+  \State $c2 = (a+c)/2$
+  \State $Sab = 1/6*(b-a)*(f(a)+4*f(c)+f(b))$
+  \State $Sac = 1/6*(c-a)*(f(a)+4*f(c1)+f(c))$
+  \State $Scb = 1/6*(b-c)*(f(c)+4*f(c2)+f(b))$
+  \State $e = abs(Sab - Sac - Scb)/15$
+  \If {$e < tol$}
+    \State $q = Sac + Scb;x = [a;c1;c;c2;b]$
+    \State return
+  \Else
+    \State $[qac, eac, xac] = ADAPSIMPSON(f,a,c,tol/2)$
+    \State $[qcb, ecb, xcb] = ADAPSIMPSON(f,c,b,tol/2)$
+    \State $q = qac + qcb$
+    \State $e = eac + ecb$
+    \State $x = [xac(1:(end-1)); xcb]$
+  \EndIf
+  \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+\end{document}

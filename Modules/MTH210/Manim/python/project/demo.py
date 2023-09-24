@@ -1,31 +1,4 @@
 from manim import *
-#manim -pql demo.py ThreeDSurfacePlot
-class ThreeDSurfacePlot(ThreeDScene):
-    def construct(self):
-        axes = ThreeDAxes()
-        self.add(axes)
-        resolution_fa = 24
-        self.set_camera_orientation(phi=75 * DEGREES, theta=-30 * DEGREES)
 
-        def param_gauss(u, v):
-            x = u
-            y = v
-            sigma, mu = 0.4, [0.0, 0.0]
-            d = np.linalg.norm(np.array([x - mu[0], y - mu[1]]))
-            z = np.exp(-(d ** 2 / (2.0 * sigma ** 2)))
-            return np.array([x, y, 0])
-
-        gauss_plane = Surface(
-            param_gauss,
-            resolution=(resolution_fa, resolution_fa),
-            v_range=[-2, 2],
-            u_range=[-2, 0]
-        )
-
-        gauss_plane.scale(2, about_point=ORIGIN)
-        gauss_plane.set_style(fill_opacity=1,stroke_color=GREEN)
-        gauss_plane.set_fill_by_checkerboard(ORANGE, BLUE, opacity=1)
-        
-        
-        self.play(Create(gauss_plane))
-        self.wait(3)
+b = np.array([1,2,3])
+print(b[1])

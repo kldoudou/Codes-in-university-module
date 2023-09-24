@@ -1,0 +1,2 @@
+# This file is used internally by FFMPEG.
+file 'file:C:/Users/lzpdo/Desktop/LMO/surf2023/draft02/python/project/media/videos/scene3/480p15/partial_movie_files/GetAxisLabelsExample/2970692767_1858466337_223132457.mp4'
